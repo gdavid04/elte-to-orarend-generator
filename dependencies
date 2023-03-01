@@ -1,0 +1,7 @@
+matplotlib
+pandas
+tqdm
+requests
+bs4
+html5lib
+lxml
