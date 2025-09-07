@@ -26,7 +26,7 @@ for _, ora in oraLista.iterrows():
 	oraKezd = int(m.group(2)) + int(m.group(3)) / 60
 	oraHossz = int(m.group(4)) + int(m.group(5)) / 60 - oraKezd
 	bar = ax.bar(nap, oraHossz, 1, oraKezd, edgecolor = 'black', color = 'lightyellow' if ora['Oratipus'] == 'gyakorlat' else 'lightblue')
-	ax.bar_label(bar, [nev + '\n' + ora['Helyszin'].removesuffix(" (Interaktív tábla)")], label_type = 'center')
+	ax.bar_label(bar, [nev + '\n' + re.sub('(-\\d+) ', '\\1\n', ora['Helyszin'].removesuffix(" (Interaktív tábla)")) + '\n' + re.sub('(\\S+) ', '', ora['Idopont'])], label_type = 'center')
 	minh, maxh = min(minh, oraKezd), max(maxh, oraKezd + oraHossz)
 ax.axis([-0.5, 4.5, math.ceil(maxh), math.floor(minh)])
 

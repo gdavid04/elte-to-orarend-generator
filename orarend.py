@@ -35,8 +35,9 @@ for targykod, kurzuskodok in tqdm(keresek.items(), desc = 'Tanrend lekérdezése
 		if not talalt:
 			oraLista.append({
 				'Kurzusnev': kurzusNevek[targykod + ' ' + str(kurzuskod)],
+				'Kurzuskod': targykod,
 				'Csop.': kurzuskod,
-				'Oratipus': kurzusTipusok[targykod + ' ' + str(kurzuskod)]
+				'Oratipus': kurzusTipusok[targykod + ' ' + str(kurzuskod)].lower()
 			})
 			print(f'Nem található óra: {targykod} {kurzuskod}')
 
