@@ -5,10 +5,10 @@ from datetime import date
 import requests
 
 # TODO grafikus felület
-kurzusokRaw = pd.read_excel('export.xlsx')
+kurzusokRaw = pd.read_excel('Felvett kurzusok.xlsx')
 kurzusok = pd.DataFrame(kurzusokRaw, columns = [
-	'Tárgy neve', 'Kurzus típusa',
-	'Tárgy kódja', 'Kurzus kódja'
+	'Tágynév', 'Típus',
+	'Tantárgy kód', 'Kurzuskód'
 ])
 keresek = defaultdict(list)
 kurzusNevek = dict()
@@ -19,7 +19,7 @@ for kurzus in kurzusok.itertuples():
 	kurzusTipusok[kurzus[3] + ' ' + str(kurzus[4])] = kurzus[2]
 oraLista = []
 for targykod, kurzuskodok in tqdm(keresek.items(), desc = 'Tanrend lekérdezése…'):
-	keres = requests.get(url = 'https://gabordavid.web.elte.hu/to/query', params = {
+	keres = requests.get(url = 'https://gabordavid.web.elte.hu/to/query.php', params = {
 		'subject_code': targykod
 	})
 	if keres.json()['status'] != 'ok':
